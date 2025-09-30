@@ -1,25 +1,60 @@
 import React from "react";
+import HeroGradientAnimation from "@components/shared/HeroGradientAnimation";
+import { Link } from "gatsby";
+import RevealWrapper from "../animation/RevealWrapper";
 
 const Hero = () => {
   return (
-    <section className="hero">
-      <h1>DJ Paul – DJ de Reggaetón y Eventos en Perú</h1>
-      <h2>
-        Residente de Cochinola y arquitecto sonoro de las fiestas urbanas más
-        potentes del país.
-      </h2>
-      <p>
-        Con sets de reggaetón old school, intros originales y producciones
-        propias, DJ Paul convierte cada evento en una experiencia inolvidable,
-        desde Lima hasta Pucallpa.
-      </p>
-      <div className="hero-cta">
-        <a href="#contacto" className="btn">
-          Reserva DJ para tu evento en Perú
-        </a>
-        <a href="#musica" className="btn secondary">
-          Escucha la música de DJ Paul
-        </a>
+    <section className="relative overflow-hidden pb-20 pt-[137px] md:pb-[100px] md:pt-[160px] xl:pt-[180px]">
+      <HeroGradientAnimation />
+      <div className="container">
+        <RevealWrapper className="text-center">
+          <div className="rv-badge mb-5 md:mb-10">
+            <span className="rv-badge-text">Open for new work</span>
+          </div>
+          <h1 className="mb-7 xl:mb-8">
+            Empowering Brand
+            <br />
+            with Cutting-Edge
+            <br />
+            <i className="font-instrument italic">Design</i> Solutions
+          </h1>
+          <p className="mx-auto mb-10 max-w-xl md:mb-14 lg:max-w-[750px] xl:mb-[76px]">
+            Turn your vision into reality with Rivor. We blend design, strategy,
+            and technology to build powerful digital experiences that elevate
+            your brand.
+          </p>
+
+          <ul className="flex list-none flex-col items-center justify-center gap-4 md:flex-row md:gap-6">
+            <li className="mx-auto block w-[90%] md:ml-auto md:mr-0 md:inline-block md:w-auto">
+              <Link
+                to="/contact"
+                className="rv-button rv-button-primary block md:inline-block"
+              >
+                <div className="rv-button-top">
+                  <span>Start a Project</span>
+                </div>
+                <div className="rv-button-bottom">
+                  <span className="text-nowrap">Start a Project</span>
+                </div>
+              </Link>
+            </li>
+
+            <li className="mx-auto block w-[90%] md:ml-0 md:mr-auto md:inline-block md:w-auto">
+              <Link
+                to="/design-agency"
+                className="rv-button rv-button-white block md:inline-block"
+              >
+                <div className="rv-button-top">
+                  <span>Our Services</span>
+                </div>
+                <div className="rv-button-bottom">
+                  <span>Our Services</span>
+                </div>
+              </Link>
+            </li>
+          </ul>
+        </RevealWrapper>
       </div>
     </section>
   );
