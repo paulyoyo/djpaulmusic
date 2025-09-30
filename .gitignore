@@ -1,3 +1,47 @@
+# Dependencias
 node_modules/
+
+# Build
+public/
 .cache/
-public
+
+# Gatsby específicos
+.env*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+
+# TypeScript
+*.tsbuildinfo
+
+# Gatsby Cloud
+.vercel
+
+# Otros archivos de producción
+.netlify/
+.now/
+
+# Archivos temporales
+*.log
+.temp/
+.tmp/
+
+# Gatsby funciones
+/functions/
