@@ -1,80 +1,81 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import React, { useEffect, useState } from "react";
+import { Link } from "gatsby";
 
 const GoogleCalendarEvents = () => {
-  const [events, setEvents] = useState([])
-  const [pastEvents, setPastEvents] = useState([])
-  const [futureEvents, setFutureEvents] = useState([])
+  const [events, setEvents] = useState([]);
+  const [pastEvents, setPastEvents] = useState([]);
+  const [futureEvents, setFutureEvents] = useState([]);
 
   // 🔥 1. Función para obtener los eventos desde Google Calendar
   const fetchEvents = async () => {
     const calendarId =
-      "f346167c078669cec4ca340bc42cc6e8010a4d5874c1876f6688339e3acc8c9a@group.calendar.google.com"
-    const apiKey = "AIzaSyBTXIeb0U_d5dYV1OVAyoFukgBmmDwpbcU"
+      "f346167c078669cec4ca340bc42cc6e8010a4d5874c1876f6688339e3acc8c9a@group.calendar.google.com";
+    const apiKey = "AIzaSyBTXIeb0U_d5dYV1OVAyoFukgBmmDwpbcU";
 
-    const today = new Date()
-    const oneMonthAgo = new Date()
-    oneMonthAgo.setDate(today.getDate() - 30)
+    const today = new Date();
+    const oneMonthAgo = new Date();
+    oneMonthAgo.setDate(today.getDate() - 30);
 
-    const oneMonthLater = new Date()
-    oneMonthLater.setDate(today.getDate() + 30)
+    const oneMonthLater = new Date();
+    oneMonthLater.setDate(today.getDate() + 30);
 
     const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
-      calendarId
-    )}/events?key=${apiKey}&timeMin=${oneMonthAgo.toISOString()}&timeMax=${oneMonthLater.toISOString()}&singleEvents=true&orderBy=startTime&timeZone=America/Lima`
+      calendarId,
+    )}/events?key=${apiKey}&timeMin=${oneMonthAgo.toISOString()}&timeMax=${oneMonthLater.toISOString()}&singleEvents=true&orderBy=startTime&timeZone=America/Lima`;
 
     try {
-      const response = await fetch(url)
-      const data = await response.json()
+      const response = await fetch(url);
+      const data = await response.json();
 
       if (data.items) {
-        console.log("Eventos recibidos:", data.items) // ✅ Verifica los eventos recibidos
-        setEvents(data.items) // 🔥 Guarda los eventos en el estado
+        console.log("Eventos recibidos:", data.items); // ✅ Verifica los eventos recibidos
+        setEvents(data.items); // 🔥 Guarda los eventos en el estado
       } else {
-        console.warn("No hay eventos en la respuesta.")
+        console.warn("No hay eventos en la respuesta.");
       }
     } catch (error) {
-      console.error("Error obteniendo eventos:", error)
+      console.error("Error obteniendo eventos:", error);
     }
-  }
+  };
 
   // ✅ 2. Llamar `fetchEvents` al montar el componente
   useEffect(() => {
-    fetchEvents()
-  }, [])
+    fetchEvents();
+  }, []);
 
   // 🔥 3. Función para dividir los eventos en pasados y futuros
   useEffect(() => {
-    if (!events || events.length === 0) return // ⚠️ Evita ejecutarlo si no hay eventos
+    if (!events || events.length === 0) return; // ⚠️ Evita ejecutarlo si no hay eventos
 
-    const today = new Date()
+    const today = new Date();
 
-    const past = events.filter(event => new Date(event.start.dateTime) < today)
+    const past = events.filter(
+      (event) => new Date(event.start.dateTime) < today,
+    );
     const future = events.filter(
-      event => new Date(event.start.dateTime) >= today
-    )
+      (event) => new Date(event.start.dateTime) >= today,
+    );
 
-    setPastEvents(past)
-    setFutureEvents(future)
+    setPastEvents(past);
+    setFutureEvents(future);
 
-    console.log("Eventos pasados:", past)
-    console.log("Eventos futuros:", future)
-  }, [events]) // 🚀 Se ejecuta cada vez que `events` cambia
+    console.log("Eventos pasados:", past);
+    console.log("Eventos futuros:", future);
+  }, [events]); // 🚀 Se ejecuta cada vez que `events` cambia
 
-  const formatDate = dateTime => {
+  const formatDate = (dateTime) => {
     return new Intl.DateTimeFormat("es-PE", {
       day: "2-digit",
       month: "short",
-    }).format(new Date(dateTime))
-  }
+    }).format(new Date(dateTime));
+  };
   return (
     <section className="section revolution-f fade-wrapper">
       <div className="container">
         <div className="row">
           <div className="col-12">
             <div className="revolution-f__content">
-              {pastEvents.map(event => (
+              {pastEvents.map((event) => (
                 <div className="revolution-f__single fade-top" key={event.id}>
                   <div className="thumb">
                     <h3>
@@ -101,7 +102,7 @@ const GoogleCalendarEvents = () => {
         <div className="row">
           <div className="col-12">
             <div className="revolution-f__content">
-              {futureEvents.map(event => (
+              {futureEvents.map((event) => (
                 <div className="revolution-f__single fade-top" key={event.id}>
                   <div className="thumb">
                     <h3>
@@ -120,7 +121,7 @@ const GoogleCalendarEvents = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default GoogleCalendarEvents
+export default GoogleCalendarEvents;

@@ -14,19 +14,22 @@ const Header = () => {
         <nav className="main-nav">
           <ul>
             <li>
-              <Link to="/#musica">Música</Link>
+              <Link to="/musica">Música</Link>
             </li>
             <li>
-              <Link to="/#shows">Shows</Link>
+              <Link to="/tour">Tour</Link>
             </li>
             <li>
-              <Link to="/#tour">Tour</Link>
+              <Link to="/cochinola">Cochinola</Link>
             </li>
             <li>
-              <Link to="/#servicios">Servicios</Link>
+              <Link to="/servicios">Servicios</Link>
             </li>
             <li>
-              <Link to="/#contacto">Contacto</Link>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="https://matrimonios.djpaul.pe">Matrimonios</Link>
             </li>
           </ul>
         </nav>
